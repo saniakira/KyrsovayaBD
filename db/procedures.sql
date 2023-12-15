@@ -1,3 +1,5 @@
+DELIMITER //
+
 CREATE PROCEDURE CountPostalWorkers(IN departmentId INT)
 BEGIN
 SELECT COUNT(*) AS Количество_почтальонов
@@ -5,10 +7,6 @@ FROM Почтальон
 WHERE Почтальон.Отделение_связи_id = departmentId;
 END //
 
-DELIMITER ;
-
-call CountPostalWorkers(1);
-DELIMITER //
 
 CREATE PROCEDURE GetSubscribedEditions(IN lastName VARCHAR(255), IN firstName VARCHAR(255), IN surname VARCHAR(255))
 BEGIN
@@ -19,9 +17,6 @@ JOIN Подписчик ON Квитанция.Подписчик_id = Подпи
 WHERE Подписчик.Фамилия = lastName AND Подписчик.Имя = firstName AND Подписчик.Отчество = surname;
 END //
 
-DELIMITER ;
-call GetSubscribedEditions('Иваня', 'Иваня','Ванкин')
-DELIMITER //
 
 CREATE PROCEDURE GetAverageSubscriptionDuration()
 BEGIN
@@ -31,9 +26,6 @@ JOIN Квитанция ON Издание.id = Квитанция.Издание
 GROUP BY Издание.id, Издание.Название;
 END //
 
-DELIMITER ;
-
-DELIMITER //
 
 CREATE PROCEDURE GetReceiptsForDepartment(IN departmentId INT)
 BEGIN
@@ -47,9 +39,6 @@ JOIN Отделение_связи ON Почтальон.Отделение_св
 WHERE Отделение_связи.id = departmentId;
 END //
 
-DELIMITER ;
-
-DELIMITER //
 
 CREATE PROCEDURE GetPostalWorkersByAddress(IN address VARCHAR(255))
 BEGIN
@@ -60,9 +49,6 @@ JOIN Дом ON Участок.id = Дом.Участок_id
 WHERE Дом.Адрес = address;
 END //
 
-DELIMITER ;
-
-DELIMITER //
 
 CREATE PROCEDURE GetDepartmentNameByCredentials(IN login VARCHAR(255), IN password VARCHAR(255))
 BEGIN
@@ -72,9 +58,6 @@ JOIN Отделение_связи ON Заведующий_почтовым_от
 WHERE Заведующий_почтовым_отделением.Логин = login AND Заведующий_почтовым_отделением.Пароль = password;
 END //
 
-DELIMITER ;
-
-DELIMITER //
 
 CREATE PROCEDURE GetDepartmentIdByName(IN departmentName VARCHAR(255))
 BEGIN
@@ -83,9 +66,6 @@ FROM Отделение_связи
 WHERE Название = departmentName;
 END //
 
-DELIMITER ;
-
-DELIMITER //
 
 CREATE PROCEDURE GetMaxEditionsCountByPlot()
 BEGIN
