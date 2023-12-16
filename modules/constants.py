@@ -2,7 +2,7 @@ import mysql.connector
 
 JSON = "data\\report.json"
 DATABASE = "postofficedb"
-
+HTML = "data\\report.html"
 config = {
     'user': 'root',
     'password': '135789',

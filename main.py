@@ -1,10 +1,10 @@
 from PyQt5 import QtWidgets
+from icecream import ic
 
-from modules.app import App
+from modules.old.app import App
 
 if __name__ == '__main__':
     import sys
-
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = App()
